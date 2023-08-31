@@ -1,5 +1,6 @@
 import './style.css'
-import { setupCounter } from './counter.js'
+import { environmentsComponent } from './src/concepts/01-enviroments'
+
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -9,8 +10,15 @@ document.querySelector('#app').innerHTML = `
     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
       <img src="./javascript.svg" class="logo vanilla" alt="JavaScript logo" />
     </a>
-    <h1>Hello Vite!</h1>   
+    <h1>Hello Vite!</h1> 
+    
+    <div class="card">
+    
+    </div>
+    
   </div>
 `
 
-setupCounter(document.querySelector('#counter'))
+
+environmentsComponent( document.querySelector('.card'))
+
