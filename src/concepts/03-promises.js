@@ -10,8 +10,35 @@ import { heroes } from "../data/heroes";
  * @param {HTMLDivElement} element 
  */
 export const promiseComponent = ( element ) => {
-    console.log( 'promiseComponent' );
-  
+
+    const  renderHero = ( hero) => {
+        element.innerHTML = hero.name;
+    };
+
+    const  renderError = ( err) => {
+        element.innerHTML = `
+        <h2>Error:</h2>
+        <h4>${err}</h4>
+        `;
+    };
+
+    const id1 = '5d86371f2343e37870b91ef19';
+
+    //1
+    finHero(id1)
+        .then( renderHero )
+        .catch( renderError );
+   
+    //  ↕↕↕↕↕ Esta dos funciones tiene una 
+    //sintaxis diferente pro si importar funcionan de las dos maneras 
+
+    //2
+    finHero(id1).then( data => {
+        renderHero(data);
+    }).catch( err => {
+        renderError(err);
+    });
+   
 };
 
 /**
