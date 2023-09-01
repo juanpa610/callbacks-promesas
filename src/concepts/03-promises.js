@@ -4,7 +4,6 @@
 
 import { heroes } from "../data/heroes";
 
-
 /**
  * 
  * @param {HTMLDivElement} element 
@@ -16,7 +15,6 @@ export const promiseComponent = ( element ) => {
     };
 
     const renderTwoHeros = ( hero1 , hero2) => {
-        debugger
         element.innerHTML = `
             <h2>Heros:</h2>
             <h4>${hero1.name} - ${hero2.name}</h4>
@@ -30,27 +28,49 @@ export const promiseComponent = ( element ) => {
         `;
     };
 
-    const id1 = '5d86371f2343e37870b91ef1';
+    const id1 = '5d86371f1efebc31def272e2';
     const id2 = '5d86371f25a058e5b1c8a65e';
 
     //1
-    finHero(id1)
-        .then( renderHero )
-        .catch( renderError );
+    // finHero(id1)
+    //     .then( renderHero )
+    //     .catch( renderError );
    
     //  ↕↕↕↕↕ Esta dos funciones tiene una 
     //sintaxis diferente pro si importar funcionan de las dos maneras 
 
     //2
-    finHero(id1).then( hero1 => {
-        finHero(id1).then( hero2 => {
-            renderTwoHeros(hero1, hero2);
-        }).catch( err => {
-            renderError(err);
-        });    
-    }).catch( err => {
-        renderError(err);
-    });
+    // finHero(id1).then( hero1 => {
+    //     finHero(id2).then( hero2 => {
+    //         renderTwoHeros(hero1, hero2);
+    //     }).catch( err => {
+    //         renderError(err);
+    //     });    
+    // }).catch( err => {
+    //     renderError(err);
+    // });
+
+     
+    //! Promise all
+    let hero1, hero2;
+
+    // finHero(id1)
+    //     .then( (hero) => {
+    //         hero1 = hero;
+    //         return finHero(id2);
+    //     }).then( (hero2) => {
+    //         renderTwoHeros(hero1, hero2);
+    //     })
+    //     .catch( err => {
+    //         renderError(err);
+    //     })
+
+    Promise.all( [
+        finHero(id1),
+        finHero(id2)
+    ]).then ( ([hero1, hero2]) => {
+        renderTwoHeros(hero1, hero2);
+    }).catch( renderError )
    
 };
 
