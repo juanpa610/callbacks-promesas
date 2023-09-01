@@ -2,6 +2,7 @@ import './style.css'
 import { environmentsComponent } from './src/concepts/01-enviroments'
 import { callbacksComponent } from './src/concepts/02-callbcks';
 import { promiseComponent } from './src/concepts/03-promises';
+import { promiseRaceComponent } from './src/concepts/04-promise-race';
 
 
 document.querySelector('#app').innerHTML = `
@@ -24,5 +25,6 @@ const element = document.querySelector('.card');
 
 // environmentsComponent( document.querySelector('.card'))
 // callbacksComponent( element );
+// promiseComponent( element );
 
-promiseComponent( element );
+promiseRaceComponent( element );
