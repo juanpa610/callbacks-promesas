@@ -11,8 +11,16 @@ import { heroes } from "../data/heroes";
  */
 export const promiseComponent = ( element ) => {
 
-    const  renderHero = ( hero) => {
+    const renderHero = ( hero) => {
         element.innerHTML = hero.name;
+    };
+
+    const renderTwoHeros = ( hero1 , hero2) => {
+        debugger
+        element.innerHTML = `
+            <h2>Heros:</h2>
+            <h4>${hero1.name} - ${hero2.name}</h4>
+        `;
     };
 
     const  renderError = ( err) => {
@@ -22,7 +30,8 @@ export const promiseComponent = ( element ) => {
         `;
     };
 
-    const id1 = '5d86371f2343e37870b91ef19';
+    const id1 = '5d86371f2343e37870b91ef1';
+    const id2 = '5d86371f25a058e5b1c8a65e';
 
     //1
     finHero(id1)
@@ -33,8 +42,12 @@ export const promiseComponent = ( element ) => {
     //sintaxis diferente pro si importar funcionan de las dos maneras 
 
     //2
-    finHero(id1).then( data => {
-        renderHero(data);
+    finHero(id1).then( hero1 => {
+        finHero(id1).then( hero2 => {
+            renderTwoHeros(hero1, hero2);
+        }).catch( err => {
+            renderError(err);
+        });    
     }).catch( err => {
         renderError(err);
     });
