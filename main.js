@@ -1,5 +1,6 @@
 import './style.css'
 import { environmentsComponent } from './src/concepts/01-enviroments'
+import { callbacksComponent } from './src/concepts/02-callbcks';
 
 
 document.querySelector('#app').innerHTML = `
@@ -18,7 +19,8 @@ document.querySelector('#app').innerHTML = `
     
   </div>
 `
+const element = document.querySelector('.card');
 
+// environmentsComponent( document.querySelector('.card'))
 
-environmentsComponent( document.querySelector('.card'))
-
+callbacksComponent( element );
