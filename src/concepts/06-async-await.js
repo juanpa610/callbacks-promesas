@@ -16,10 +16,14 @@ export const asyncAwaitComponent = async ( element ) => {
     const id1 = '5d86371f2343e37870b91ef1';
     const id2 = '5d86371fd55e2e2a30fe1cc4';
 
-    const {name: name1 } =  await finHero( id1);
-    const  {name: name2 } =  await finHero( id2 );
-    
-    element.innerHTML = ` ${name1} / ${name2}`
+    try {
+        const {name: name1 } =  await finHero( id1);
+        const  {name: name2 } =  await finHero( id2 );
+        
+        element.innerHTML = ` ${name1} / ${name2}`
+    } catch (error) {
+        element.innerHTML = ` ${error}`;
+    }
 
 };
 
