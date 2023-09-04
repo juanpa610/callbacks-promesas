@@ -37,6 +37,9 @@ const findHero = async (idHero) => {
 
     const hero = heroes.find( hero => hero.id === idHero);
 
-    return hero?.name;
+    if(!hero) 
+        throw new Error(`Hero with id : ${idHero}, not found `);
+
+    return hero.name;
 
 }
