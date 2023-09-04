@@ -7,17 +7,25 @@
  */
 export const generatorFunctionComponent = ( element ) => {
 
-    const myGenerator = myFirstGeneratorFunction();
+    const genId = idGenerator();
 
-    console.debug(`💎🤑  myGenerator.next();`, myGenerator.next());
-    console.debug(`💎🤑  myGenerator.next();`, myGenerator.next());
-    console.debug(`💎🤑  myGenerator.next();`, myGenerator.next());
-    console.debug(`💎🤑  myGenerator.next();`, myGenerator.next());
-    console.debug(`💎🤑  myGenerator.next();`, myGenerator.next());
+    const btn = document.createElement('button');
+    btn.innerHTML = 'Current id: 0 ';
+    element.append(btn);
 
+    btn.addEventListener( 'click', () => {
+        btn.innerHTML = `Current id: ${genId.next().value}`
+    })
 };
 
 
+function* idGenerator(year) {
+    let currentId = 0;
+
+    while (true) {
+        yield ++currentId;
+    }
+}
 
 function* myFirstGeneratorFunction() {
 
